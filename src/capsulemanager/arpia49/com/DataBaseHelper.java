@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -145,9 +146,20 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
  
 	}
- 
-        // Add your public helper methods to access and get content from the database.
-       // You could return cursors by doing "return myDataBase.query(....)" so it'd be easy
-       // to you to create adapters for your views.
- 
+	
+	public Cursor adal(){
+        Cursor c = myDataBase.rawQuery("SELECT name FROM capsules WHERE intensity > 8;",
+                                                null);
+        return c;
+	}
+	
+	public Cursor randomCoffee(){
+		Cursor c = myDataBase.rawQuery("SELECT * FROM capsules WHERE intensity > 0 ORDER BY RANDOM() LIMIT 1;",null);
+        return c;
+	}
+	
+	public Cursor coffeeInfo(String name){
+		Cursor c = myDataBase.rawQuery("SELECT * FROM capsules WHERE name = '"+name+"' LIMIT 1;",null);
+        return c;
+	}
 }
