@@ -1,9 +1,11 @@
 package capsulemanager.arpia49.com;
 
+import java.io.IOException;
 import java.util.Random;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.database.SQLException;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -15,6 +17,7 @@ public class WelcomeActivity extends Activity {
 	final Random myRandom = new Random();
 	SharedPreferences sp = null;
 	Button buttonGenerate;
+	Button buttonBDD;
 	// Button buttonList;
 	final String[] capsulesArray = { "Ristretto", "Livanto", "Cosi",
 			"Arpeggio", "Capriccio", "Roma", "Volluto", "Indriya", "Rosabaya",
@@ -23,13 +26,15 @@ public class WelcomeActivity extends Activity {
 	TextView randomCapsule;
 	String lastCapsule;
 	String showText;
-
+    DataBaseHelper myDbHelper = new DataBaseHelper(this);
+    
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
 		buttonGenerate = (Button) findViewById(R.id.generate);
+		buttonBDD = (Button) findViewById(R.id.bdd);
 		// buttonList = (Button) findViewById(R.id.listCapsules);
 
 		final int[] anArray = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
@@ -61,6 +66,27 @@ public class WelcomeActivity extends Activity {
 				SharedPreferences.Editor editor = sp.edit();
 				editor.putInt("lastCapsule", capsuleNumber);
 				editor.commit();
+			}
+		});
+
+		buttonBDD.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+		        try {
+		        	myDbHelper.createDataBase();
+		        } catch (IOException ioe) {
+		        	throw new Error("Unable to create database");
+		        }
+		 
+		 	try {
+		 
+		 		myDbHelper.openDataBase();
+		 
+		 	}catch(SQLException sqle){
+		 
+		 		throw sqle;
+		 
+		 	}
+		 
 			}
 		});
 
