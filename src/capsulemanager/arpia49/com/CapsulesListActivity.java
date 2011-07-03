@@ -1,10 +1,13 @@
 package capsulemanager.arpia49.com;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,12 +28,29 @@ public class CapsulesListActivity extends ListActivity {
 			"Decaffeinato" };
 	TextView textGenerateNumber;
 	String lastCapsule;
+    DataBaseHelper myDbHelper = new DataBaseHelper(this);
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
+	  
+      List<String> list = new ArrayList<String>();
 
-	  setListAdapter(new ArrayAdapter<String>(this, R.layout.capsules_list, capsulesArray));
+      Cursor cursor = myDbHelper.adal();
+      if (cursor.moveToFirst()) {
+
+      	         do {
+      	            list.add(cursor.getString(0));
+      	         } while (cursor.moveToNext());
+      	      }
+      	      if (cursor != null && !cursor.isClosed()) {
+      	         cursor.close();
+      	      }
+
+      
+
+	  setListAdapter(new ArrayAdapter<String>(this, R.layout.capsules_list, list));
 
 	  ListView lv = getListView();
 	  lv.setTextFilterEnabled(true);
