@@ -2,6 +2,8 @@ package capsulemanager.arpia49.com;
 
 import java.util.Random;
 
+import capsulemanager.arpia49.com.R;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
