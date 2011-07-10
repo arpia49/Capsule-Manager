@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Capsule manager</string>
     <string name="capsuleName">Name:</string>
+    <string name="capsuleTotal">Available:</string>
 </resources>

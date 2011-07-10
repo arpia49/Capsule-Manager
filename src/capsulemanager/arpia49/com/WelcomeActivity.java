@@ -20,12 +20,16 @@ public class WelcomeActivity extends Activity {
 	SharedPreferences sp = null;
 	Button buttonGenerate;
 	Button buttonList;
+	Button buttonTake;
 	TextView capsuleName;
+	TextView capsuleTotal;
 	TextView capsuleDescription;
 	TextView capsuleIntensity;
 	TextView capsuleSuggestions;
 	String lastCapsuleStr;
     DataBaseHelper myDbHelper = new DataBaseHelper(this);
+    String name;
+    int number;
     
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -45,8 +49,10 @@ public class WelcomeActivity extends Activity {
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
 		buttonGenerate = (Button) findViewById(R.id.generate);
 		buttonList = (Button) findViewById(R.id.listCapsules);
+		buttonTake = (Button) findViewById(R.id.takeIt);
 
 		capsuleName = (TextView) findViewById(R.id.capsuleName);
+		capsuleTotal = (TextView) findViewById(R.id.capsuleTotal);
 		capsuleDescription = (TextView) findViewById(R.id.capsuleDescription);
 		capsuleIntensity = (TextView) findViewById(R.id.capsuleIntensity);
 		capsuleSuggestions = (TextView) findViewById(R.id.capsuleSuggestions);
@@ -58,6 +64,7 @@ public class WelcomeActivity extends Activity {
 					capsuleName.setText("Your last coffee was - " + lastCapsuleStr + " -");
 					  capsuleDescription.setText("Description: "+cursor2.getString(cursor2.getColumnIndex("description")));
 					  capsuleIntensity.setText("Intensity: "+cursor2.getInt(cursor2.getColumnIndex("intensity")));
+					  capsuleTotal.setText("Available: "+cursor2.getInt(cursor2.getColumnIndex("total")));
 					  String suggestions = "";
 					if(cursor2.getInt(cursor2.getColumnIndex("milk"))==1){
 					  suggestions = "Milk";
@@ -85,10 +92,14 @@ public class WelcomeActivity extends Activity {
 		buttonGenerate.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
+				buttonTake.setVisibility(0);
 			      Cursor cursor = myDbHelper.randomCoffee();
 			      String suggestions = "";
 			      if (cursor.moveToFirst()) {
-			    	  capsuleName.setText(cursor.getString(cursor.getColumnIndex("name")));
+				      name = cursor.getString(cursor.getColumnIndex("name"));
+				      number = cursor.getInt(cursor.getColumnIndex("total"));
+			    	  capsuleName.setText(name);
+			    	  capsuleTotal.setText("Available: "+number);
 			    	  capsuleDescription.setText("Description: "+cursor.getString(cursor.getColumnIndex("description")));
 			    	  capsuleIntensity.setText("Intensity: "+cursor.getInt(cursor.getColumnIndex("intensity")));
 			    	  if(cursor.getInt(cursor.getColumnIndex("milk"))==1){
@@ -120,6 +131,21 @@ public class WelcomeActivity extends Activity {
 				Intent myIntent = new Intent(WelcomeActivity.this,
 						CapsulesListActivity.class);
 				WelcomeActivity.this.startActivity(myIntent);
+			}
+		});
+
+		buttonTake.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+		        try {
+		        	myDbHelper.updateDataBase();
+					number--;
+					myDbHelper.updateContent(name, number);
+			    	capsuleTotal.setText("Available: "+number);
+					buttonTake.setVisibility(4);
+		        }catch(SQLException sqle){
+		        	throw sqle;
+		        }
 			}
 		});
 	}

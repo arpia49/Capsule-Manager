@@ -162,7 +162,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	}
 	
 	public Cursor randomCoffee(){
-		Cursor c = myDataBase.rawQuery("SELECT * FROM capsules WHERE intensity > 0 ORDER BY RANDOM() LIMIT 1;",null);
+		Cursor c = myDataBase.rawQuery("SELECT * FROM capsules WHERE total > 0 ORDER BY RANDOM() LIMIT 1;",null);
         return c;
 	}
 	

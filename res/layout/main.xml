@@ -4,6 +4,8 @@
 	android:layout_height="fill_parent">
 	<TextView android:id="@+id/capsuleName" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:text="@string/capsuleName" />
+	<TextView android:id="@+id/capsuleTotal" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="@string/capsuleTotal" />
 	<TextView android:id="@+id/capsuleDescription" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:text="Description: " />
 	<TextView android:id="@+id/capsuleIntensity" android:layout_width="fill_parent"
@@ -14,6 +16,13 @@
 		android:layout_height="wrap_content" android:text="Random!"
 		android:id="@+id/generate" />
 	<Button android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:text="List"
-		android:id="@+id/listCapsules" />
+		android:layout_height="wrap_content" android:text="Take it!"
+		android:id="@+id/takeIt" android:visibility="invisible"/>
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:gravity="bottom">
+		<Button android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:text="Edit stock"
+			android:id="@+id/listCapsules" />
+	</LinearLayout>
 </LinearLayout>
