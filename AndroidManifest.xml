@@ -13,19 +13,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name="CapsulesListActivity"-->
-<!--                  android:label="Capsules List">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.CAPSULESLIST" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
-<!--        <activity android:name=".EditCapsuleActivity"-->
-<!--                  android:label="Capsules Edit">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.CAPSULEEDIT" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
+        <activity android:name="CapsulesListActivity"
+                  android:label="Capsules List">
+            <intent-filter>
+                <action android:name="android.intent.action.CAPSULESLIST" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".EditCapsuleActivity"
+                  android:label="Capsules Edit">
+            <intent-filter>
+                <action android:name="android.intent.action.CAPSULEEDIT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

@@ -120,10 +120,18 @@ public class DataBaseHelper extends SQLiteOpenHelper{
     }
  
     public void openDataBase() throws SQLException{
- 
+    	 
     	//Open the database
         String myPath = DB_PATH + DB_NAME;
     	myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+ 
+    }
+    
+    public void updateDataBase() throws SQLException{
+ 
+    	//Open the database
+        String myPath = DB_PATH + DB_NAME;
+    	myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
  
     }
  
@@ -147,8 +155,8 @@ public class DataBaseHelper extends SQLiteOpenHelper{
  
 	}
 	
-	public Cursor adal(){
-        Cursor c = myDataBase.rawQuery("SELECT name FROM capsules WHERE intensity > 8;",
+	public Cursor allCoffee(){
+        Cursor c = myDataBase.rawQuery("SELECT name FROM capsules WHERE intensity > 0;",
                                                 null);
         return c;
 	}
@@ -162,4 +170,12 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		Cursor c = myDataBase.rawQuery("SELECT * FROM capsules WHERE name = '"+name+"' LIMIT 1;",null);
         return c;
 	}
+	
+	void updateContent(String name, int total){
+		try{
+			myDataBase.execSQL("UPDATE capsules SET total="+total+" WHERE name='"+name+"'");
+		}catch(Error e){
+			e.toString();
+		}
+	}	
 }

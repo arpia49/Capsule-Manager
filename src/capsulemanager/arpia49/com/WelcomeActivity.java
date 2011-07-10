@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Random;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -18,7 +19,7 @@ public class WelcomeActivity extends Activity {
 	final Random myRandom = new Random();
 	SharedPreferences sp = null;
 	Button buttonGenerate;
-//	Button buttonList;
+	Button buttonList;
 	TextView capsuleName;
 	TextView capsuleDescription;
 	TextView capsuleIntensity;
@@ -43,7 +44,7 @@ public class WelcomeActivity extends Activity {
         }
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
 		buttonGenerate = (Button) findViewById(R.id.generate);
-//		buttonList = (Button) findViewById(R.id.listCapsules);
+		buttonList = (Button) findViewById(R.id.listCapsules);
 
 		capsuleName = (TextView) findViewById(R.id.capsuleName);
 		capsuleDescription = (TextView) findViewById(R.id.capsuleDescription);
@@ -71,11 +72,7 @@ public class WelcomeActivity extends Activity {
 					  suggestions += " Lungo";
 					  }
 					  capsuleSuggestions.setText("Suggestions: "+suggestions);		    	  
-		    	  
-		    	  
-		    	  
-		    	  
-		    	  
+
 	      	      if (cursor2 != null && !cursor2.isClosed()) {
 	      	    	  cursor2.close();
 		      	  }
@@ -117,13 +114,13 @@ public class WelcomeActivity extends Activity {
 			}
 		});
 
-//		buttonList.setOnClickListener(new OnClickListener() {
-//
-//			public void onClick(View v) {
-//				Intent myIntent = new Intent(WelcomeActivity.this,
-//						CapsulesListActivity.class);
-//				WelcomeActivity.this.startActivity(myIntent);
-//			}
-//		});
+		buttonList.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				Intent myIntent = new Intent(WelcomeActivity.this,
+						CapsulesListActivity.class);
+				WelcomeActivity.this.startActivity(myIntent);
+			}
+		});
 	}
 }
