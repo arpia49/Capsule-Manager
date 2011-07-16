@@ -47,9 +47,9 @@ public class WelcomeActivity extends Activity {
         	throw sqle;
         }
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
-		buttonGenerate = (Button) findViewById(R.id.generate);
-		buttonList = (Button) findViewById(R.id.listCapsules);
-		buttonTake = (Button) findViewById(R.id.takeIt);
+		buttonGenerate = (Button) findViewById(R.id.buttonRandom);
+		buttonList = (Button) findViewById(R.id.buttonEditStock);
+		buttonTake = (Button) findViewById(R.id.buttonTakeIt);
 
 		capsuleName = (TextView) findViewById(R.id.capsuleName);
 		capsuleTotal = (TextView) findViewById(R.id.capsuleTotal);
@@ -58,35 +58,38 @@ public class WelcomeActivity extends Activity {
 		capsuleSuggestions = (TextView) findViewById(R.id.capsuleSuggestions);
 		lastCapsuleStr = sp.getString("lastCapsuleStr", "");
 		Cursor cursor2 = myDbHelper.coffeeInfo(lastCapsuleStr);
-		if (cursor2.getCount() !=0) {
-		      if (cursor2.moveToFirst()) {
+		if (cursor2.getCount() != 0) {
+			if (cursor2.moveToFirst()) {
+				capsuleName.setText(this.getString(R.string.lastCoffeeText)
+						+" "+ lastCapsuleStr);
+				capsuleDescription.setText(this.getString(R.string.capsuleDescription)
+						+" "+ cursor2.getString(cursor2.getColumnIndex("description")));
+				capsuleIntensity.setText(this.getString(R.string.capsuleIntensity)
+						+" "+ cursor2.getInt(cursor2.getColumnIndex("intensity")));
+				capsuleTotal.setText(this.getString(R.string.capsuleTotal)
+						+" "+ cursor2.getInt(cursor2.getColumnIndex("total")));
+				String suggestions = "";
+				if (cursor2.getInt(cursor2.getColumnIndex("milk")) == 1) {
+					suggestions = "Milk";
+				}
+				if (cursor2.getInt(cursor2.getColumnIndex("ristretto")) == 1) {
+					suggestions += " Ristretto";
+				}
+				if (cursor2.getInt(cursor2.getColumnIndex("espresso")) == 1) {
+					suggestions += " Espresso";
+				}
+				if (cursor2.getInt(cursor2.getColumnIndex("lungo")) == 1) {
+					suggestions += " Lungo";
+				}
+				capsuleSuggestions.setText(this.getString(R.string.capsuleSuggestions) 
+						+ " "+suggestions);
 
-					capsuleName.setText("Your last coffee was - " + lastCapsuleStr + " -");
-					  capsuleDescription.setText("Description: "+cursor2.getString(cursor2.getColumnIndex("description")));
-					  capsuleIntensity.setText("Intensity: "+cursor2.getInt(cursor2.getColumnIndex("intensity")));
-					  capsuleTotal.setText("Available: "+cursor2.getInt(cursor2.getColumnIndex("total")));
-					  String suggestions = "";
-					if(cursor2.getInt(cursor2.getColumnIndex("milk"))==1){
-					  suggestions = "Milk";
-					  }
-					  if(cursor2.getInt(cursor2.getColumnIndex("ristretto"))==1){
-					  suggestions += " Ristretto";
-					  }
-					  if(cursor2.getInt(cursor2.getColumnIndex("espresso"))==1){
-					  suggestions += " Espresso";
-					  }
-					  if(cursor2.getInt(cursor2.getColumnIndex("lungo"))==1){
-					  suggestions += " Lungo";
-					  }
-					  capsuleSuggestions.setText("Suggestions: "+suggestions);		    	  
-
-	      	      if (cursor2 != null && !cursor2.isClosed()) {
-	      	    	  cursor2.close();
-		      	  }
-		      }
-				} else {
-			capsuleName
-					.setText("Welcome, this is your first time, just press the button!");
+				if (cursor2 != null && !cursor2.isClosed()) {
+					cursor2.close();
+				}
+			}
+		} else {
+			capsuleName.setText(R.string.welcomeText);
 		}
 
 		buttonGenerate.setOnClickListener(new OnClickListener() {
@@ -99,9 +102,9 @@ public class WelcomeActivity extends Activity {
 				      name = cursor.getString(cursor.getColumnIndex("name"));
 				      number = cursor.getInt(cursor.getColumnIndex("total"));
 			    	  capsuleName.setText(name);
-			    	  capsuleTotal.setText("Available: "+number);
-			    	  capsuleDescription.setText("Description: "+cursor.getString(cursor.getColumnIndex("description")));
-			    	  capsuleIntensity.setText("Intensity: "+cursor.getInt(cursor.getColumnIndex("intensity")));
+			    	  capsuleTotal.setText(getString(R.string.capsuleTotal)+" "+number);
+			    	  capsuleDescription.setText(getString(R.string.capsuleDescription)+" "+cursor.getString(cursor.getColumnIndex("description")));
+			    	  capsuleIntensity.setText(getString(R.string.capsuleIntensity)+" "+cursor.getInt(cursor.getColumnIndex("intensity")));
 			    	  if(cursor.getInt(cursor.getColumnIndex("milk"))==1){
 			    		  suggestions = "Milk";
 			    	  }
@@ -114,7 +117,7 @@ public class WelcomeActivity extends Activity {
 			    	  if(cursor.getInt(cursor.getColumnIndex("lungo"))==1){
 			    		  suggestions += " Lungo";
 			    	  }
-			    	  capsuleSuggestions.setText("Suggestions: "+suggestions);
+			    	  capsuleSuggestions.setText(getString(R.string.capsuleSuggestions)+" "+suggestions);
 						SharedPreferences.Editor editor = sp.edit();
 						editor.putString("lastCapsuleStr", cursor.getString(cursor.getColumnIndex("name")));
 						editor.commit();

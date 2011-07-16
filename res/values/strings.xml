@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Capsule manager</string>
+    <string name="actList">Capsules list</string>
+    <string name="actEdit">Capsules edition</string>
+    
     <string name="capsuleName">Name:</string>
     <string name="capsuleTotal">Available:</string>
+    <string name="capsuleDescription">Description:</string>
+    <string name="capsuleIntensity">Intensity:</string>
+    <string name="capsuleSuggestions">Suggestions:</string>
+    
+    <string name="buttonRandom">Random!</string>
+    <string name="buttonTakeIt">Take It!</string>
+    <string name="buttonEditStock">Edit Stock</string>
+    
+    <string name="welcomeText">Welcome, this is your first time, just press the button!</string>
+    <string name="lastCoffeeText">Your last coffee was:</string>
 </resources>

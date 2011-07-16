@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Capsule manager</string>
+    <string name="actList">Lista de cápsulas</string>
+    <string name="actEdit">Edita tus cápsulas</string>
+    
+    
+    <string name="capsuleName">Nombre:</string>
+    <string name="capsuleTotal">Disponibles:</string>
+    <string name="capsuleDescription">Descripción:</string>
+    <string name="capsuleIntensity">Intensidad:</string>
+    <string name="capsuleSuggestions">Sugerencias:</string>
+    
+    <string name="buttonRandom">¡Sorpréndeme!</string>
+    <string name="buttonTakeIt">Descuéntala</string>
+    <string name="buttonEditStock">Editar cantidades</string>
+    
+    <string name="welcomeText">¡Bienvenido! Es tu primera vez, tan sólo toca el botón.</string>
+    <string name="lastCoffeeText">Tu último café fue:</string>
+</resources>

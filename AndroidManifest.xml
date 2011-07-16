@@ -14,14 +14,14 @@
             </intent-filter>
         </activity>
         <activity android:name="CapsulesListActivity"
-                  android:label="Capsules List">
+                  android:label="@string/actList">
             <intent-filter>
                 <action android:name="android.intent.action.CAPSULESLIST" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".EditCapsuleActivity"
-                  android:label="Capsules Edit">
+                  android:label="@string/actEdit">
             <intent-filter>
                 <action android:name="android.intent.action.CAPSULEEDIT" />
                 <category android:name="android.intent.category.LAUNCHER" />
