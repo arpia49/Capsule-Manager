@@ -14,7 +14,7 @@
     <string name="buttonTakeIt">Take It!</string>
     <string name="buttonEditStock">Edit Stock</string>
     
-    <string name="welcomeText">Welcome, this is your first time, just press the button!</string>
+    <string name="welcomeText">Welcome! You have not drink any coffee yet.</string>
     <string name="lastCoffeeText">Your last coffee was:</string>
         
     <string name="Ristretto">Powerful and contrasting.</string>

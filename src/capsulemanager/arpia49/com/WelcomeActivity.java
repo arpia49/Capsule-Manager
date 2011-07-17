@@ -57,78 +57,13 @@ public class WelcomeActivity extends Activity {
 		capsuleIntensity = (TextView) findViewById(R.id.capsuleIntensity);
 		capsuleSuggestions = (TextView) findViewById(R.id.capsuleSuggestions);
 		lastCapsuleStr = sp.getString("lastCapsuleStr", "");
-		Cursor cursor2 = myDbHelper.coffeeInfo(lastCapsuleStr);
-		if (cursor2.getCount() != 0) {
-			if (cursor2.moveToFirst()) {
-				capsuleName.setText(this.getString(R.string.lastCoffeeText)
-						+" "+ lastCapsuleStr);
-				String message = (String) getResources().getText(getResources().getIdentifier(lastCapsuleStr.replace(" ", "_"), "string", "capsulemanager.arpia49.com"));
-				capsuleDescription.setText(this.getString(R.string.capsuleDescription)
-						+" "+ message);
-				capsuleIntensity.setText(this.getString(R.string.capsuleIntensity)
-						+" "+ cursor2.getInt(cursor2.getColumnIndex("intensity")));
-				capsuleTotal.setText(this.getString(R.string.capsuleTotal)
-						+" "+ cursor2.getInt(cursor2.getColumnIndex("total")));
-				String suggestions = "";
-				if (cursor2.getInt(cursor2.getColumnIndex("milk")) == 1) {
-					suggestions = "Milk";
-				}
-				if (cursor2.getInt(cursor2.getColumnIndex("ristretto")) == 1) {
-					suggestions += " Ristretto";
-				}
-				if (cursor2.getInt(cursor2.getColumnIndex("espresso")) == 1) {
-					suggestions += " Espresso";
-				}
-				if (cursor2.getInt(cursor2.getColumnIndex("lungo")) == 1) {
-					suggestions += " Lungo";
-				}
-				capsuleSuggestions.setText(this.getString(R.string.capsuleSuggestions) 
-						+ " "+suggestions);
-
-				if (cursor2 != null && !cursor2.isClosed()) {
-					cursor2.close();
-				}
-			}
-		} else {
-			capsuleName.setText(R.string.welcomeText);
-		}
+		updateScreen(true, myDbHelper.coffeeInfo(lastCapsuleStr));
 
 		buttonGenerate.setOnClickListener(new OnClickListener() {
-
 			public void onClick(View v) {
 				buttonTake.setVisibility(0);
-			      Cursor cursor = myDbHelper.randomCoffee();
-			      String suggestions = "";
-			      if (cursor.moveToFirst()) {
-				      name = cursor.getString(cursor.getColumnIndex("name"));
-				      number = cursor.getInt(cursor.getColumnIndex("total"));
-			    	  capsuleName.setText(name);
-			    	  capsuleTotal.setText(getString(R.string.capsuleTotal)+" "+number);
-			    	  String message = (String) getResources().getText(getResources().getIdentifier(name.replace(" ", "_"), "string", "capsulemanager.arpia49.com"));
-			    	  capsuleDescription.setText(getString(R.string.capsuleDescription)
-									+" "+ message);
-			    	  capsuleIntensity.setText(getString(R.string.capsuleIntensity)+" "+cursor.getInt(cursor.getColumnIndex("intensity")));
-			    	  if(cursor.getInt(cursor.getColumnIndex("milk"))==1){
-			    		  suggestions = "Milk";
-			    	  }
-			    	  if(cursor.getInt(cursor.getColumnIndex("ristretto"))==1){
-			    		  suggestions += " Ristretto";
-			    	  }
-			    	  if(cursor.getInt(cursor.getColumnIndex("espresso"))==1){
-			    		  suggestions += " Espresso";
-			    	  }
-			    	  if(cursor.getInt(cursor.getColumnIndex("lungo"))==1){
-			    		  suggestions += " Lungo";
-			    	  }
-			    	  capsuleSuggestions.setText(getString(R.string.capsuleSuggestions)+" "+suggestions);
-						SharedPreferences.Editor editor = sp.edit();
-						editor.putString("lastCapsuleStr", cursor.getString(cursor.getColumnIndex("name")));
-						editor.commit();
-		      	      if (cursor != null && !cursor.isClosed()) {
-		      	    	  cursor.close();
-			      	  }
-			      }
-			}		
+				updateScreen(false, myDbHelper.randomCoffee());
+			}
 		});
 
 		buttonList.setOnClickListener(new OnClickListener() {
@@ -149,10 +84,57 @@ public class WelcomeActivity extends Activity {
 					myDbHelper.updateContent(name, number);
 			    	capsuleTotal.setText("Available: "+number);
 					buttonTake.setVisibility(4);
+					SharedPreferences.Editor editor = sp.edit();
+					editor.putString("lastCapsuleStr", name);
+					editor.commit();
 		        }catch(SQLException sqle){
 		        	throw sqle;
 		        }
 			}
 		});
+	}
+	
+
+	void updateScreen(boolean remember, Cursor cursor){
+		lastCapsuleStr = sp.getString("lastCapsuleStr", "");
+		String suggestions = "";
+		if (cursor.getCount() != 0) {
+			if (cursor.moveToFirst()) {
+				number = cursor.getInt(cursor.getColumnIndex("total"));
+				name = cursor.getString(cursor.getColumnIndex("name"));
+				String description = (String) getResources().getText(
+						getResources().getIdentifier(name.replace(" ", "_"),
+								"string", "capsulemanager.arpia49.com"));
+				if(remember){
+					name = this.getString(R.string.lastCoffeeText) + " " +name;
+				}
+				capsuleName.setText(name);
+				capsuleTotal.setText(getString(R.string.capsuleTotal) + " "
+						+ number);
+				capsuleDescription.setText(getString(R.string.capsuleDescription)
+						+ " " + description);
+				capsuleIntensity.setText(getString(R.string.capsuleIntensity) + " "
+						+ cursor.getInt(cursor.getColumnIndex("intensity")));
+				if (cursor.getInt(cursor.getColumnIndex("milk")) == 1) {
+					suggestions = "Milk";
+				}
+				if (cursor.getInt(cursor.getColumnIndex("ristretto")) == 1) {
+					suggestions += " Ristretto";
+				}
+				if (cursor.getInt(cursor.getColumnIndex("espresso")) == 1) {
+					suggestions += " Espresso";
+				}
+				if (cursor.getInt(cursor.getColumnIndex("lungo")) == 1) {
+					suggestions += " Lungo";
+				}
+				capsuleSuggestions.setText(getString(R.string.capsuleSuggestions)
+						+ " " + suggestions.trim().replace(" ", ", "));
+				if (cursor != null && !cursor.isClosed()) {
+					cursor.close();
+				}
+			}
+		}else{
+			capsuleName.setText(R.string.welcomeText);
+		}
 	}
 }

@@ -15,7 +15,7 @@
     <string name="buttonTakeIt">Descuéntala</string>
     <string name="buttonEditStock">Editar cantidades</string>
     
-    <string name="welcomeText">¡Bienvenido! Es tu primera vez, tan sólo toca el botón.</string>
+    <string name="welcomeText">¡Bienvenido! Aún no has consumido ningún café.</string>
     <string name="lastCoffeeText">Tu último café fue:</string>
     
     <string name="Ristretto">Intenso y lleno de contrastes.</string>
