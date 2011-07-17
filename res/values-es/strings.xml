@@ -3,7 +3,10 @@
     <string name="app_name">Capsule manager</string>
     <string name="actList">Lista de cápsulas</string>
     <string name="actEdit">Edita tus cápsulas</string>
-    
+    <string name="actAdd">Añade una nueva cápsula</string>
+    <string name="txtMissingData">Faltan datos en el formulario</string>
+    <string name="txtCapsuleAdded">¡Cápsula añadida!</string>
+    <string name="txtCapsuleExists">Esa cápsula ya existe</string>
     
     <string name="capsuleName">Nombre:</string>
     <string name="capsuleTotal">Disponibles:</string>
@@ -14,6 +17,7 @@
     <string name="buttonRandom">¡Sorpréndeme!</string>
     <string name="buttonTakeIt">Descuéntala</string>
     <string name="buttonEditStock">Editar cantidades</string>
+    <string name="btAdd">Añadir</string>
     
     <string name="welcomeText">¡Bienvenido! Aún no has consumido ningún café.</string>
     <string name="lastCoffeeText">Tu último café fue:</string>

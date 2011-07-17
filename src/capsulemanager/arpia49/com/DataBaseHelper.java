@@ -171,6 +171,21 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         return c;
 	}
 	
+	public boolean checkContent(String query){
+		Boolean result = true;
+		Cursor c = myDataBase.rawQuery("SELECT name FROM capsules WHERE "+query+" LIMIT 1;",null);
+		if (c.getCount() != 0) {
+			result = false;
+		}
+		c.close();
+		return result;
+	}
+	
+	public void addCoffee(String query){
+		myDataBase.rawQuery("INSERT into capsules (total, milk, lungo, espresso, ristretto, " +
+				"intensity, color, category, description, name) VALUES ("+query+");",null);
+	}
+	
 	void updateContent(String name, int total){
 		try{
 			myDataBase.execSQL("UPDATE capsules SET total="+total+" WHERE name='"+name+"'");

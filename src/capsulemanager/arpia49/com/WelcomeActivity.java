@@ -10,6 +10,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -30,6 +32,10 @@ public class WelcomeActivity extends Activity {
     DataBaseHelper myDbHelper = new DataBaseHelper(this);
     String name;
     int number;
+    
+    //Option Menu
+	public static final int ACT_ADD_CAPSULE = 1;
+	static final private int ADD_CAPSULE = Menu.FIRST;
     
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -93,6 +99,32 @@ public class WelcomeActivity extends Activity {
 		        }
 			}
 		});
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+
+		// Create and add new menu items.
+		MenuItem itemAdd = menu.add(0, ADD_CAPSULE, Menu.NONE,
+				R.string.actAdd);
+
+		// Assign icons
+		itemAdd.setIcon(R.drawable.add);
+		return true;
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		super.onOptionsItemSelected(item);
+		switch (item.getItemId()) {
+			case (ADD_CAPSULE): {
+				Intent myIntent = new Intent(WelcomeActivity.this,
+						AddCapsuleActivity.class);
+				WelcomeActivity.this.startActivity(myIntent);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 

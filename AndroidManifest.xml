@@ -27,5 +27,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AddCapsuleActivity"
+                  android:label="@string/actAdd">
+            <intent-filter>
+                <action android:name="android.intent.action.CAPSULEADD" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

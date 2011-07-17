@@ -3,6 +3,10 @@
     <string name="app_name">Capsule manager</string>
     <string name="actList">Capsules list</string>
     <string name="actEdit">Capsules edition</string>
+    <string name="actAdd">Add a new capsule</string>
+    <string name="txtMissingData">Missing data in the form</string>
+    <string name="txtCapsuleAdded">Capsule added!</string>
+    <string name="txtCapsuleExists">This capsule already exists</string>
     
     <string name="capsuleName">Name:</string>
     <string name="capsuleTotal">Available:</string>
@@ -13,6 +17,7 @@
     <string name="buttonRandom">Random!</string>
     <string name="buttonTakeIt">Take It!</string>
     <string name="buttonEditStock">Edit Stock</string>
+    <string name="btAdd">Add</string>
     
     <string name="welcomeText">Welcome! You have not drink any coffee yet.</string>
     <string name="lastCoffeeText">Your last coffee was:</string>
