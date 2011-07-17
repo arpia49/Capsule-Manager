@@ -16,4 +16,21 @@
     
     <string name="welcomeText">Welcome, this is your first time, just press the button!</string>
     <string name="lastCoffeeText">Your last coffee was:</string>
+        
+    <string name="Ristretto">Powerful and contrasting.</string>
+    <string name="Livanto">Round and balanced.</string>
+    <string name="Cosi">Light and lemony.</string>
+    <string name="Arpeggio">Intense and creamy.</string>
+    <string name="Capriccio">Rich and distinctive.</string>
+    <string name="Roma">Full and balanced.</string>
+    <string name="Volluto">Sweet and fruity.</string>
+    <string name="Indriya">Powerful and spicy.</string>
+    <string name="Rosabaya">Fruity and balanced.</string>
+    <string name="Dulsão">Sweet and smooth.</string>
+    <string name="Fortissio_Lungo">Rich and intense.</string>
+    <string name="Vivalto_Lungo">Complex and balanced.</string>
+    <string name="Finezzo_Lungo">Floral and refreshing.</string>
+    <string name="Decaffeinato_Intenso">Dense and powerful.</string>
+    <string name="Decaffeinato_Lungo">Light and full-flavoured.</string>
+    <string name="Decaffeinato">Fruity and delicate.</string>
 </resources>
