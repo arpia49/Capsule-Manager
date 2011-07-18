@@ -82,7 +82,8 @@ public class WelcomeActivity extends Activity {
 		        	myDbHelper.updateDataBase();
 					number--;
 					myDbHelper.updateContent(name, number);
-			    	capsuleTotal.setText("Available: "+number);
+					capsuleTotal.setText(getString(R.string.capsuleTotal) + " "
+							+ number);
 					buttonTake.setVisibility(4);
 					SharedPreferences.Editor editor = sp.edit();
 					editor.putString("lastCapsuleStr", name);
