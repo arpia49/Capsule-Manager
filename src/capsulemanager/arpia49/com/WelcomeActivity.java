@@ -117,16 +117,16 @@ public class WelcomeActivity extends Activity {
 				capsuleIntensity.setText(getString(R.string.capsuleIntensity) + " "
 						+ cursor.getInt(cursor.getColumnIndex("intensity")));
 				if (cursor.getInt(cursor.getColumnIndex("milk")) == 1) {
-					suggestions = "Milk";
+					suggestions = getString(R.string.milk);
 				}
 				if (cursor.getInt(cursor.getColumnIndex("ristretto")) == 1) {
-					suggestions += " Ristretto";
+					suggestions += " " + getString(R.string.ristretto);
 				}
 				if (cursor.getInt(cursor.getColumnIndex("espresso")) == 1) {
-					suggestions += " Espresso";
+					suggestions += " " + getString(R.string.espresso);
 				}
 				if (cursor.getInt(cursor.getColumnIndex("lungo")) == 1) {
-					suggestions += " Lungo";
+					suggestions += " " + getString(R.string.lungo);
 				}
 				capsuleSuggestions.setText(getString(R.string.capsuleSuggestions)
 						+ " " + suggestions.trim().replace(" ", ", "));

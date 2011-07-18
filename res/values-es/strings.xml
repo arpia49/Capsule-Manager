@@ -34,4 +34,9 @@
     <string name="Decaffeinato_Intenso">Denso e intenso.</string>
     <string name="Decaffeinato_Lungo">Ligero y de sabor intenso.</string>
     <string name="Decaffeinato">Afrutado y delicado.</string>
+    
+    <string name="milk">Leche</string>
+    <string name="ristretto">Ristretto</string>
+    <string name="espresso">Espresso</string>
+    <string name="lungo">Largo</string>
 </resources>

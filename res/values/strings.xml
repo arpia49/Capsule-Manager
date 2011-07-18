@@ -33,4 +33,9 @@
     <string name="Decaffeinato_Intenso">Dense and powerful.</string>
     <string name="Decaffeinato_Lungo">Light and full-flavoured.</string>
     <string name="Decaffeinato">Fruity and delicate.</string>
+    
+    <string name="milk">Milk</string>
+    <string name="ristretto">Ristretto</string>
+    <string name="espresso">Espresso</string>
+    <string name="lungo">Lungo</string>
 </resources>
