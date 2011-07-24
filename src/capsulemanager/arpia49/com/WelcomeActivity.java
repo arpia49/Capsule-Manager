@@ -32,6 +32,8 @@ public class WelcomeActivity extends Activity {
     DataBaseHelper myDbHelper = new DataBaseHelper(this);
     String name;
     int number;
+    public final int INVISIBLE = 4;
+    public final int VISIBLE = 0;
     
     //Option Menu
 	public static final int ACT_ADD_CAPSULE = 1;
@@ -133,6 +135,10 @@ public class WelcomeActivity extends Activity {
 		String suggestions = "";
 		if (cursor.getCount() != 0) {
 			if (cursor.moveToFirst()) {
+				capsuleDescription.setVisibility(VISIBLE);
+				capsuleTotal.setVisibility(VISIBLE);
+				capsuleIntensity.setVisibility(VISIBLE);
+				capsuleSuggestions.setVisibility(VISIBLE);
 				number = cursor.getInt(cursor.getColumnIndex("total"));
 				name = cursor.getString(cursor.getColumnIndex("name"));
 				String description = (String) getResources().getText(
@@ -168,6 +174,10 @@ public class WelcomeActivity extends Activity {
 			}
 		}else{
 			capsuleName.setText(R.string.welcomeText);
+			capsuleDescription.setVisibility(INVISIBLE);
+			capsuleTotal.setVisibility(INVISIBLE);
+			capsuleIntensity.setVisibility(INVISIBLE);
+			capsuleSuggestions.setVisibility(INVISIBLE);
 		}
 	}
 }
