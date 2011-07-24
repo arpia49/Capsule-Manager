@@ -61,6 +61,7 @@ public class AddCapsuleActivity extends Activity {
 						toast = Toast.makeText(getApplicationContext(),
 								R.string.txtCapsuleAdded, Toast.LENGTH_SHORT);
 						toast.show();
+						finish();
 					}else{
 						toast = Toast.makeText(getApplicationContext(),
 								R.string.txtCapsuleExists, Toast.LENGTH_SHORT);

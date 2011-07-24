@@ -35,7 +35,15 @@ public class CapsulesListActivity extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		populateList();
+	}
+	
+    protected void onActivityResult(int requestCode, int resultCode,
+            Intent data) {
+    	populateList();
+    }
+	
+	public void populateList(){
 		try {
 			myDbHelper.openDataBase();
 			final List<String> list = new ArrayList<String>();
@@ -70,7 +78,6 @@ public class CapsulesListActivity extends ListActivity {
 		} catch (SQLException sqle) {
 			throw sqle;
 		}
-
 	}
 	
 	@Override
@@ -92,7 +99,7 @@ public class CapsulesListActivity extends ListActivity {
 			case (ADD_CAPSULE): {
 				Intent myIntent = new Intent(CapsulesListActivity.this,
 						AddCapsuleActivity.class);
-				CapsulesListActivity.this.startActivity(myIntent);
+				CapsulesListActivity.this.startActivityForResult(myIntent, 0);
 				return true;
 			}
 		}
