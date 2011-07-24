@@ -108,10 +108,6 @@ public class WelcomeActivity extends Activity {
 				capsuleSuggestions.setVisibility(VISIBLE);
 				number = cursor.getInt(cursor.getColumnIndex("total"));
 				name = cursor.getString(cursor.getColumnIndex("name"));
-				if(remember){
-					name = this.getString(R.string.lastCoffeeText) + " " +name;
-				}
-				capsuleName.setText(name);
 				capsuleTotal.setText(getString(R.string.capsuleTotal) + " "
 						+ number);
 				if(cursor.getInt(cursor.getColumnIndex("category")) != 9){
@@ -141,6 +137,11 @@ public class WelcomeActivity extends Activity {
 				}
 				capsuleSuggestions.setText(getString(R.string.capsuleSuggestions)
 						+ " " + suggestions.trim().replace(" ", ", "));
+
+				if(remember){
+					name = this.getString(R.string.lastCoffeeText) + " " +name;
+				}
+				capsuleName.setText(name);
 				if (cursor != null && !cursor.isClosed()) {
 					cursor.close();
 				}
