@@ -108,17 +108,23 @@ public class WelcomeActivity extends Activity {
 				capsuleSuggestions.setVisibility(VISIBLE);
 				number = cursor.getInt(cursor.getColumnIndex("total"));
 				name = cursor.getString(cursor.getColumnIndex("name"));
-				String description = (String) getResources().getText(
-						getResources().getIdentifier(name.replace(" ", "_"),
-								"string", "capsulemanager.arpia49.com"));
 				if(remember){
 					name = this.getString(R.string.lastCoffeeText) + " " +name;
 				}
 				capsuleName.setText(name);
 				capsuleTotal.setText(getString(R.string.capsuleTotal) + " "
 						+ number);
-				capsuleDescription.setText(getString(R.string.capsuleDescription)
-						+ " " + description);
+				if(cursor.getInt(cursor.getColumnIndex("category")) != 9){
+					String description = (String) getResources().getText(
+							getResources().getIdentifier(name.replace(" ", "_"),
+									"string", "capsulemanager.arpia49.com"));
+					capsuleDescription.setText(getString(R.string.capsuleDescription)
+							+ " " + description);
+				}
+				else{
+					capsuleDescription.setText(getString(R.string.capsuleDescription)
+							+ " " + cursor.getString(cursor.getColumnIndex("description")));
+				}
 				capsuleIntensity.setText(getString(R.string.capsuleIntensity) + " "
 						+ cursor.getInt(cursor.getColumnIndex("intensity")));
 				if (cursor.getInt(cursor.getColumnIndex("milk")) == 1) {
