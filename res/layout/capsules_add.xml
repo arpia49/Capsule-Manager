@@ -39,6 +39,5 @@
 		android:layout_height="fill_parent" android:gravity="bottom">
 		<Button android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:text="@string/btAdd"
-			android:id="@+id/btAdd" />
-	</LinearLayout>
+			android:id="@+id/btAdd" android:enabled="false" />	</LinearLayout>
 </LinearLayout>

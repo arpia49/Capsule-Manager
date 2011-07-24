@@ -3,6 +3,8 @@ package capsulemanager.arpia49.com;
 import android.app.Activity;
 import android.database.SQLException;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -46,8 +48,10 @@ public class AddCapsuleActivity extends Activity {
 						String query = etTotal.getText()+","+cbMilk.isChecked()+", "
 						+cbLungo.isChecked()+", "+cbEspresso.isChecked()+", "
 						+cbRistretto.isChecked()+", "+etIntensity.getText()+", "
-						+"#000000"+", "+"9"+", "
-						+etDescription.getText()+", "+etName.getText();
+						+"\'#000000\'"+", "+"9"+", \'"
+						+etDescription.getText()+"\', \'"+etName.getText()+"\'";
+						query=query.replace("true", "1");
+						query=query.replace("false", "0");
 				        try {
 				        	myDbHelper.updateDataBase();
 				        	myDbHelper.addCoffee(query);
@@ -68,6 +72,103 @@ public class AddCapsuleActivity extends Activity {
 					toast.show();
 				}
 			}
+		});
+		
+		
+		etName.addTextChangedListener(new TextWatcher() { 
+            public void  afterTextChanged (Editable s){ 
+                if(checkForm()){
+                	btAdd.setEnabled(true);
+                }else{
+                	btAdd.setEnabled(false);
+                }
+            }
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				
+			};
+		});
+		
+		etDescription.addTextChangedListener(new TextWatcher() { 
+            public void  afterTextChanged (Editable s){ 
+                if(checkForm()){
+                	btAdd.setEnabled(true);
+                }else{
+                	btAdd.setEnabled(false);
+                }
+            }
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				
+			};
+		});
+		
+		etIntensity.addTextChangedListener(new TextWatcher() { 
+            public void  afterTextChanged (Editable s){ 
+                if(checkForm()){
+                	btAdd.setEnabled(true);
+                }else{
+                	btAdd.setEnabled(false);
+                }
+            }
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				
+			};
+		});
+		
+		etTotal.addTextChangedListener(new TextWatcher() { 
+            public void  afterTextChanged (Editable s){ 
+                if(checkForm()){
+                	btAdd.setEnabled(true);
+                }else{
+                	btAdd.setEnabled(false);
+                }
+            }
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				
+			};
 		});
 	}
 	

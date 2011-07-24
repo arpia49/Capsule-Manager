@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,6 +27,10 @@ public class CapsulesListActivity extends ListActivity {
 	TextView textGenerateNumber;
 	String lastCapsule;
 	DataBaseHelper myDbHelper = new DataBaseHelper(this);
+    
+    //Option Menu
+	public static final int ACT_ADD_CAPSULE = 1;
+	static final private int ADD_CAPSULE = Menu.FIRST;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -65,5 +71,31 @@ public class CapsulesListActivity extends ListActivity {
 			throw sqle;
 		}
 
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+
+		// Create and add new menu items.
+		MenuItem itemAdd = menu.add(0, ADD_CAPSULE, Menu.NONE,
+				R.string.actAdd);
+
+		// Assign icons
+		itemAdd.setIcon(R.drawable.add);
+		return true;
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		super.onOptionsItemSelected(item);
+		switch (item.getItemId()) {
+			case (ADD_CAPSULE): {
+				Intent myIntent = new Intent(CapsulesListActivity.this,
+						AddCapsuleActivity.class);
+				CapsulesListActivity.this.startActivity(myIntent);
+				return true;
+			}
+		}
+		return false;
 	}
 }

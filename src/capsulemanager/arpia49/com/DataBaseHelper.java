@@ -182,8 +182,8 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	}
 	
 	public void addCoffee(String query){
-		myDataBase.rawQuery("INSERT into capsules (total, milk, lungo, espresso, ristretto, " +
-				"intensity, color, category, description, name) VALUES ("+query+");",null);
+		myDataBase.execSQL("INSERT into capsules (total, milk, lungo, espresso, ristretto, " +
+				"intensity, color, category, description, name) VALUES ("+query+");");
 	}
 	
 	void updateContent(String name, int total){
