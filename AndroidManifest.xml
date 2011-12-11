@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="capsulemanager.arpia49.com"
-      android:versionCode="0400032"
+      android:versionCode="1000032"
       android:versionName="0.3.2">
-    <uses-sdk android:minSdkVersion="4" />
+    <uses-sdk android:minSdkVersion="10" />
+   	<uses-feature android:name="android.hardware.nfc" android:required="false" />
+	<uses-permission android:name="android.permission.NFC" />
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".WelcomeActivity"
@@ -31,6 +33,24 @@
                   android:label="@string/actAdd">
             <intent-filter>
                 <action android:name="android.intent.action.CAPSULEADD" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+   		<activity android:name=".CapsuleLauncherActivity"
+			android:label="@string/app_name">
+           	<intent-filter >
+               	<action android:name="android.nfc.action.NDEF_DISCOVERED" />
+               	<data
+                   android:host="manager"
+                   android:path="/start"
+                   android:scheme="capsule" />
+                <category android:name="android.intent.category.DEFAULT" />
+   	        </intent-filter>
+		</activity>
+        <activity android:name=".CreateTagsActivity"
+                  android:label="@string/createTags">
+            <intent-filter>
+                <action android:name="android.intent.action.CAPSULEADDTAG" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

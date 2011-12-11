@@ -4,10 +4,13 @@ import java.io.IOException;
 import java.util.Random;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.nfc.NfcAdapter;
+import android.nfc.NfcManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -21,6 +24,7 @@ public class WelcomeActivity extends Activity {
 	Button buttonGenerate;
 	Button buttonList;
 	Button buttonTake;
+	Button btTags;
 	TextView capsuleName;
 	TextView capsuleTotal;
 	TextView capsuleDescription;
@@ -30,6 +34,10 @@ public class WelcomeActivity extends Activity {
     DataBaseHelper myDbHelper = new DataBaseHelper(this);
     String name;
     int number;
+    
+    NfcManager manager;
+    NfcAdapter adapter;
+    
     public final int INVISIBLE = 4;
     public final int VISIBLE = 0;
     
@@ -52,6 +60,7 @@ public class WelcomeActivity extends Activity {
 		buttonGenerate = (Button) findViewById(R.id.buttonRandom);
 		buttonList = (Button) findViewById(R.id.buttonEditStock);
 		buttonTake = (Button) findViewById(R.id.buttonTakeIt);
+		btTags = (Button) findViewById(R.id.btCreateTags);
 
 		capsuleName = (TextView) findViewById(R.id.capsuleName);
 		capsuleTotal = (TextView) findViewById(R.id.capsuleTotal);
@@ -95,6 +104,31 @@ public class WelcomeActivity extends Activity {
 		        }
 			}
 		});
+		
+		manager = (NfcManager) getApplicationContext().getSystemService(Context.NFC_SERVICE);
+		adapter = manager.getDefaultAdapter();
+		btTags.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent myIntent = new Intent(WelcomeActivity.this,
+						CreateTagsActivity.class);
+				WelcomeActivity.this.startActivity(myIntent);
+			}
+		});
+		if (adapter != null && adapter.isEnabled()) {
+			btTags.setVisibility(VISIBLE);
+		}else{
+			btTags.setVisibility(INVISIBLE);
+		}
+	}
+	
+	@Override
+	protected void onResume() {
+		if (adapter != null && adapter.isEnabled()) {
+			btTags.setVisibility(VISIBLE);
+		}else{
+			btTags.setVisibility(INVISIBLE);
+		}
+		super.onResume();
 	}
 	
 	void updateScreen(boolean remember, Cursor cursor){
@@ -153,5 +187,9 @@ public class WelcomeActivity extends Activity {
 			capsuleIntensity.setVisibility(INVISIBLE);
 			capsuleSuggestions.setVisibility(INVISIBLE);
 		}
+	}
+	
+	public void onBackPressed() {
+	        moveTaskToBack(true);
 	}
 }

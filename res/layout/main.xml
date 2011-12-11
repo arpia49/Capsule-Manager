@@ -21,8 +21,11 @@
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent" android:gravity="bottom">
-		<Button android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:text="@string/buttonEditStock"
-			android:id="@+id/buttonEditStock" />
+	<Button android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="@string/createTags"
+		android:id="@+id/btCreateTags" />
+	<Button android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="@string/buttonEditStock"
+		android:id="@+id/buttonEditStock" />
 	</LinearLayout>
 </LinearLayout>

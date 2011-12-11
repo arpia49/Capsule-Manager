@@ -43,4 +43,9 @@
     <string name="ristretto">Ristretto</string>
     <string name="espresso">Espresso</string>
     <string name="lungo">Largo</string>
+    
+    <string name="tagStart">Crear etiqueta NFC de inicio</string>
+    <string name="createTags">Crear etiquetas NFC</string>
+    <string name="tempCreateToast">Aún sin implementar</string>
+    
 </resources>
