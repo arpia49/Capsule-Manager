@@ -43,4 +43,7 @@
     <string name="ristretto">Ristretto</string>
     <string name="espresso">Espresso</string>
     <string name="lungo">Largo</string>
+    
+    <string name="plus_symbol">+</string>
+    <string name="minus_symbol">-</string>
 </resources>

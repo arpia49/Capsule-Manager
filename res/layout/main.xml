@@ -18,7 +18,7 @@
 	<Button android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:text="@string/buttonTakeIt"
 		android:id="@+id/buttonTakeIt" android:visibility="invisible"/>
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	<LinearLayout 
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent" android:gravity="bottom">
 		<Button android:layout_width="fill_parent"
